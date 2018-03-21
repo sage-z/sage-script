@@ -1,0 +1,33 @@
+{
+  "name": "zegapaiz",
+  "version": "0.0.1",
+  "description": "javescript tools",
+  "main": "index.js",
+  "bin": "./bin/zz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zegapaiz/zegapain.git"
+  },
+  "keywords": [
+    "tools",
+    "zegapaiz"
+  ],
+  "author": "Zegapaiz f1259@qq.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zegapaiz/zegapain/issues"
+  },
+  "homepage": "https://github.com/Zegapaiz/zegapain#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "chalk": "^2.3.2",
+    "commander": "^2.15.1",
+    "debug": "^3.1.0",
+    "is-buffer": "^2.0.2",
+    "semver": "^5.5.0",
+    "v8-compile-cache": "^1.1.2"
+  }
+}
