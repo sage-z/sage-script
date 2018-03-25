@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    // "sourceMap": true,
+    // "allowJs": true,
+    // "module": "commonjs",
+    "removeComments": true,
+    "outDir": "./lib",
+    "target": "es5",
+    "types": [
+        "node"
+    ],
+    "noImplicitAny": true
+  },
+    "include": [
+        "./src/**/*"
+    ]
+}
