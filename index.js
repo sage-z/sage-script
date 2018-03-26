@@ -1,5 +1,2 @@
-// module.exports = require('./lib')
-var a = require('./lib/zegapaiz.min.js')
-console.log(a)
-console.log(a.is)
-// module.exports = require('./lib')
+'use strict';
+module.exports = require('./lib')

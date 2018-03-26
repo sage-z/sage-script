@@ -1,13 +1,11 @@
 import is = require('./is')
 import random = require('./random')
-// console.log(is)
+import patch = require('./patch')
+
 const zz = {
     is,
-    random
+    random,
+    patch
 }
-export = zz
-// function hello(compiler: string) {
-//     console.log(`Hello from ${compiler}`)
-// }
 
-// hello("typescript")
+export = zz

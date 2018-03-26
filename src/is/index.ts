@@ -1,11 +1,11 @@
 'use strict';
-
 import * as env from './env'
 import * as type from './type'
+import * as business from './business'
 
-// const toString = Object.prototype.toString;
 
-const is = {
+export = {
   ...env,
-  ...type
+  ...type,
+  ...business
 }

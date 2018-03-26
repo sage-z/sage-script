@@ -2,10 +2,8 @@
 /**
  * 
  * 数据类型检测
- * @module
  */
 
-const isBuffer = require('is-buffer');
 const toString = Object.prototype.toString;
 
 /**
@@ -14,10 +12,11 @@ const toString = Object.prototype.toString;
  * @param {Object} val 要测试的值
  * @returns {boolean} 如果value是一个数组，则返回true，否则返回false
  */
-export function Array(val: any) {
+export function array(val: any) {
   return toString.call(val) === '[object Array]';
 }
 
+export const buffer = require('is-buffer');
 // /**
 //  * 确定一个值是否是一个 ArrayBuffer
 //  *
@@ -60,7 +59,7 @@ export function Array(val: any) {
  * @param {Object} val
  * @returns {boolean}
  */
-export function String(val: any) {
+export function string(val: any) {
   return typeof val === 'string';
 }
 
@@ -70,7 +69,7 @@ export function String(val: any) {
  * @param {Object} val
  * @returns {boolean}
  */
-export function Number(val: any) {
+export function number(val: any) {
   return typeof val === 'number';
 }
 
@@ -80,9 +79,9 @@ export function Number(val: any) {
  * @param {Object} val
  * @returns {boolean}
  */
-export function Undefined(val: any) {
-  return typeof val === 'undefined';
-}
+// export function undefined(val: any) {
+//   return typeof val === 'undefined';
+// }
 
 /**
  * 确定一个值是否是一个 Object
@@ -90,7 +89,7 @@ export function Undefined(val: any) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Object, otherwise false
  */
-export function Object(val: any) {
+export function object(val: any) {
   return val !== null && typeof val === 'object';
 }
 
@@ -100,7 +99,7 @@ export function Object(val: any) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Date, otherwise false
  */
-export function Date(val: any) {
+export function date(val: any) {
   return toString.call(val) === '[object Date]';
 }
 
@@ -110,19 +109,19 @@ export function Date(val: any) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a File, otherwise false
  */
-export function File(val: any) {
+export function file(val: any) {
   return toString.call(val) === '[object File]';
 }
 
-// /**
-//  * 确定一个值是否是一个 Blob
-//  *
-//  * @param {Object} val The value to test
-//  * @returns {boolean} True if value is a Blob, otherwise false
-//  */
-// function isBlob(val: any) {
-//   return toString.call(val) === '[object Blob]';
-// }
+// // /**
+// //  * 确定一个值是否是一个 Blob
+// //  *
+// //  * @param {Object} val The value to test
+// //  * @returns {boolean} True if value is a Blob, otherwise false
+// //  */
+// // function isBlob(val: any) {
+// //   return toString.call(val) === '[object Blob]';
+// // }
 
 /**
  * 确定一个值是否是一个 Function
@@ -130,26 +129,26 @@ export function File(val: any) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Function, otherwise false
  */
-export function Function(val: any) {
+export function fn(val: any) {
   return toString.call(val) === '[object Function]';
 }
 
-// /**
-//  * 确定一个值是否是一个 Stream
-//  *
-//  * @param {Object} val The value to test
-//  * @returns {boolean} True if value is a Stream, otherwise false
-//  */
-// function isStream(val: any) {
-//   return isObject(val) && isFunction(val.pipe);
-// }
+// // /**
+// //  * 确定一个值是否是一个 Stream
+// //  *
+// //  * @param {Object} val The value to test
+// //  * @returns {boolean} True if value is a Stream, otherwise false
+// //  */
+// // function isStream(val: any) {
+// //   return isObject(val) && isFunction(val.pipe);
+// // }
 
-// /**
-//  * Determine if a value is a URLSearchParams object
-//  *
-//  * @param {Object} val The value to test
-//  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
-//  */
-// function isURLSearchParams(val: any) {
-//   return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
-// }
+// // /**
+// //  * Determine if a value is a URLSearchParams object
+// //  *
+// //  * @param {Object} val The value to test
+// //  * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+// //  */
+// // function isURLSearchParams(val: any) {
+// //   return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+// // }

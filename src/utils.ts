@@ -1,15 +1,5 @@
 'use strict';
 
-/**
- * Trim excess whitespace off the beginning and end of a string
- *
- * @param {String} str The String to trim
- * @returns {String} The String freed of excess whitespace
- */
-function trim(str: string) {
-  return str.replace(/^\s*/, '').replace(/\s*$/, '');
-}
-
 
 // /**
 //  * 遍历数组或对象调用每个项目的函数。
@@ -85,6 +75,5 @@ function trim(str: string) {
 
 export = {
   // forEach: forEach,
-  // merge: merge,
-  trim: trim
+  // merge: merge
 };

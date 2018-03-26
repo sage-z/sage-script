@@ -1,6 +1,6 @@
 {
   "name": "zegapaiz",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "javescript tools",
   "main": "index.js",
   "bin": "./bin/zz.js",
