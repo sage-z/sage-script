@@ -2,4 +2,5 @@
 examples/
 node_modules/
 test/
+build/
 webpack.*.js

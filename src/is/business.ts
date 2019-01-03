@@ -1,16 +1,20 @@
-/**
- * 
- * 环境与能力检测
- * @module
- * @author 
- * 
- */
+// /**
+//  * 
+//  * 业务检测
+//  * @module
+//  * @author 
+//  * 
+//  */
 
 /**
- * 判断是否是中国身份证号码
+ * 
+ * @name isIdCard
+ * @description 判断是否是中国身份证号码
+ * @augments string
+ * @returns Boolean
  *
  */
-export function IdCard( idCard: string) {
+export function isIdCard( idCard: string) {
     if(idCard.length != 18 ){
         return false;
     }
@@ -66,16 +70,19 @@ export function IdCard( idCard: string) {
     }
 }
 
-
-
-export function BankId(account: string){
+/**
+ * 
+ * @name isBankId
+ * @description 判断是否是中国银行账户
+ * @augments string
+ *
+ */
+export function isBankId(account: string){
     var reg=/^(\d{16}|\d{19})$/;
     if(account == ''){
-        alert("请输入您的银行账号");
         return false;
     } else {
         if(!reg.test(account)){
-            alert("请输入16位或19位数字的银行账号");
             return false;
         } else {
             return true;
@@ -83,11 +90,14 @@ export function BankId(account: string){
     }
 }
 
-
 /**
- * 是否是中文
+ * 
+ * @name isChineseOnly
+ * @description 判断是否是全中文
+ * @augments string
+ *
  */
-export function ChineseOnly(target: string){
+export function isChineseOnly(target: string){
     var regu = "^[\u4e00-\u9fa5]+$";
     var re = new RegExp(regu);
     if (re.test(target)) {
@@ -96,15 +106,19 @@ export function ChineseOnly(target: string){
     return false;
 }
 
-/* 验证电子邮箱的格式 */
-export function Email(email: string) {
+/**
+ * 
+ * @name isEmail
+ * @description 验证电子邮箱的格式
+ * @augments string
+ *
+ */
+export function isEmail(email: string) {
     var strEmail=this.trim(email);
     if (strEmail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1)
     {
         return true;
     }else{
-        // alert("Email格式不正确！");
         return false;
     }
 }
-
