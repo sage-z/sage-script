@@ -2,9 +2,7 @@
 .tscache
 .DS_Store
 node_modules/
-bin/
 build/
 lib/
-src/
 test/
 types/
