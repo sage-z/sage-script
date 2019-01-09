@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zegapaiz/zegapain.git"
+    "url": "git+https://github.com/sage-z/sage-script.git"
   },
   "keywords": [
     "tools"
@@ -22,9 +22,9 @@
   "author": "sage f1259@qq.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zegapaiz/zegapain/issues"
+    "url": "https://github.com/sage-z/sage-script/issues"
   },
-  "homepage": "https://github.com/Zegapaiz/zegapain#readme",
+  "homepage": "https://github.com/sage-z/sage-script#readme",
   "dependencies": {
     "async": "^2.6.0",
     "chalk": "^2.3.2",
@@ -49,7 +49,6 @@
     "ts-node": "^7.0.1",
     "tsify": "^3.0.4",
     "typescript": "^3.0.1",
-    "typings": "^2.1.1",
     "vinyl-source-stream": "^2.0.0"
   }
 }
