@@ -17,12 +17,6 @@ var async     = require('async');
 var debug     = require('debug')('pm2:cli');
 var pkg       = require('../package.json');
 
-// Early detection of silent to avoid printing motd
-if (process.argv.indexOf('--silent') > -1 ||
-    process.argv.indexOf('-s') > -1) {
-  process.env.PM2_DISCRETE_MODE = true;
-}
-
 if (process.argv.indexOf('-v') > -1) {
   console.log(pkg.version);
   process.exit(0);
@@ -53,14 +47,14 @@ commander.on('--help', function() {
   console.log('');
 });
 
-if (process.argv.indexOf('-s') > -1) {
-  for(var key in console){
-    var code = key.charCodeAt(0);
-    if(code >= 97 && code <= 122){
-      console[key] = function(){};
-    }
-  }
-}
+// if (process.argv.indexOf('-s') > -1) {
+//   for(var key in console){
+//     var code = key.charCodeAt(0);
+//     if(code >= 97 && code <= 122){
+//       console[key] = function(){};
+//     }
+//   }
+// }
 
 var _arr = process.argv.indexOf('--') > -1 ? process.argv.slice(0, process.argv.indexOf('--')) : process.argv;
 
@@ -85,6 +79,7 @@ else if (_arr.indexOf('startup') > -1 || _arr.indexOf('unstartup') > -1) {
 }
 else {
 
+  
 }
 
 //
@@ -121,44 +116,18 @@ function patchCommanderArg(cmd) {
 //
 commander.command('start <file|json|stdin|app_name|pm_id...>')
   .option('--watch', 'Watch folder for changes')
-  .option('--fresh', 'Rebuild Dockerfile')
   .option('--daemon', 'Run container in Daemon mode (debug purposes)')
   .option('--container', 'Start application in container mode')
-  .option('--dist', 'with --container; change local Dockerfile to containerize all files in current directory')
-  .option('--image-name [name]', 'with --dist; set the exported image name')
-  .option('--node-version [major]', 'with --container, set a specific major Node.js version')
-  .option('--dockerdaemon', 'for debugging purpose')
   .description('start and daemonize an app')
   .action(function(cmd, opts) {
-    console.log('asdf')
-  });
-
-commander.command('trigger <proc_name> <action_name> [params]')
-  .description('deploy your json')
-  .action(function(pm_id, action_name, params) {
-    pm2.trigger(pm_id, action_name, params);
-  });
-
-//
-// Stop specific id
-//
-commander.command('stop <id|name|all|json|stdin...>')
-  .option('--watch', 'Stop watching folder for changes')
-  .description('stop a process (to start it again, do pm2 restart <app>)')
-  .action(function(param) {
-    async.forEachLimit(param, 1, function(script, next) {
-      pm2.stop(script, next);
-    }, function(err) {
-      pm2.speedList(err ? 1 : 0);
-    });
-  });
-
-
-
-commander.command('id <name>')
-  .description('get process id by name')
-  .action(function(name) {
-    pm2.getProcessIdByName(name);
+    var config = {
+      moduleName: null,
+      description: '',
+      sass: false,
+      less: false, ...cmd
+  }
+    console.log(config)
+    // console.log(opts)
   });
 
 //
@@ -183,54 +152,6 @@ commander.command('delete <name|id|script|all|json|stdin...>')
   });
 
 
-// Stop and delete a process by name from database
-//
-commander.command('ping')
-  .description('ping pm2 daemon - if not up it will launch it')
-  .action(function() {
-    pm2.ping();
-  });
-
-commander.command('update')
-  .description('(alias) update in-memory PM2 with local PM2')
-  .action(function() {
-    pm2.update();
-  });
-
-//
-// Save processes to file
-//
-commander.command('send <pm_id> <line>')
-  .description('send stdin to <pm_id>')
-  .action(function(pm_id, line) {
-  });
-
-commander.command('desc <id>')
-  .description('(alias) describe all parameters of a process id')
-  .action(function(proc_id) {
-  });
-
-commander.command('info <id>')
-  .description('(alias) describe all parameters of a process id')
-  .action(function(proc_id) {
-  });
-
-commander.command('show <id>')
-  .description('(alias) describe all parameters of a process id')
-  .action(function(proc_id) {
-  });
-
-//
-// List command
-//
-
-commander.command('list')
-  .alias('ls')
-  .description('list all processes')
-  .action(function() {
-    
-  });
-
 commander.command('status')
   .description('(alias) list all processes')
   .action(function() {
@@ -251,14 +172,8 @@ commander.command('logs [id|name]')
   .option('--nostream', 'print logs without lauching the log stream')
   .description('stream logs file. Default stream all logs')
   .action(function(id, cmd) {
-    var Logs = require('../lib/API/Log.js');
 
     if (!id) id = 'all';
-
-    var line = 15;
-    var raw  = false;
-    var exclusive = false;
-    var timestamp = false;
 
     if(!isNaN(parseInt(cmd.lines))) {
       line = parseInt(cmd.lines);
@@ -300,16 +215,6 @@ commander.command('pull <name> [commit_id]')
   });
 
 //
-// Update repository to the next commit for a given app
-//
-commander.command('forward <name>')
-  .description('updates repository to the next commit for a given app')
-  .action(function(pm2_name) {
-
-  });
-
-
-//
 // Catch all
 //
 commander.command('*')
@@ -323,9 +228,12 @@ commander.command('*')
 //
 // 如果没有参数，则显示帮助
 //
+// console.log(process.argv.length)
 if (process.argv.length == 2) {
   commander.parse(process.argv);
   commander.outputHelp();
   // 检查是否忘记关闭RPC的fds
   process.exit(cst.ERROR_EXIT);
 }
+
+commander.parse(process.argv);
